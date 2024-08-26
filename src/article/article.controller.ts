@@ -10,8 +10,8 @@ import {
   Patch,
 } from '@nestjs/common';
 import { ArticleService } from './article.service';
-import { IArticleResponse } from './article.model';
-import { ArticleDto, ArticlePatchDto } from './article.dto';
+import { IArticleResponse } from './model/article.model';
+import { ArticleDto, ArticlePatchDto } from './dto/article.dto';
 
 @Controller('article')
 export class ArticleController {

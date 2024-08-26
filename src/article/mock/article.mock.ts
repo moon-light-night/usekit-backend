@@ -1,4 +1,4 @@
-import { Article } from './article.model';
+import { Article } from '../model/article.model';
 
 export const articlesMock: Article[] = [
   new Article('The first one', 'Lorem ipsum ....', 1),

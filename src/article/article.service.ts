@@ -1,7 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { articlesMock } from './article.mock';
-import { Article, IArticleResponse, IArticlesResponse } from './article.model';
-import { ArticleDto, ArticlePatchDto } from './article.dto';
+import { articlesMock } from './mock/article.mock';
+import {
+  Article,
+  IArticleResponse,
+  IArticlesResponse,
+} from './model/article.model';
+import { ArticleDto, ArticlePatchDto } from './dto/article.dto';
 
 @Injectable()
 export class ArticleService {
@@ -11,7 +15,7 @@ export class ArticleService {
 
   getArticleById(id: number): IArticleResponse {
     const targetArticle: Article = articlesMock.find(
-      (article) => article.id === id,
+      (article) => article.article_id === id,
     );
     return { article: targetArticle };
   }
@@ -30,7 +34,9 @@ export class ArticleService {
     id: number,
     updatedArticleDto: ArticlePatchDto,
   ): IArticleResponse {
-    const targetArticle = articlesMock.find((article) => article.id === id);
+    const targetArticle = articlesMock.find(
+      (article) => article.article_id === id,
+    );
     targetArticle.content = updatedArticleDto.content;
     return { article: targetArticle };
   }

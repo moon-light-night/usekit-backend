@@ -1,10 +1,10 @@
 export class Article {
-  id: number;
+  article_id: number;
   title: string;
   content: string;
 
-  constructor(title: string, content: string, id?: number) {
-    this.id = id;
+  constructor(title: string, content: string, article_id: number) {
+    this.article_id = article_id;
     this.title = title;
     this.content = content;
   }
