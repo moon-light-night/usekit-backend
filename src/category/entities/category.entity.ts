@@ -4,10 +4,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { UserEntity } from '../../user/entities/user.entity';
+import { TransactionEntity } from '../../transaction/entities/transaction.entity';
 
 @Entity()
 export class CategoryEntity {
@@ -17,7 +19,10 @@ export class CategoryEntity {
   @Column()
   name: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.transactions)
+  @OneToMany(() => TransactionEntity, (transaction) => transaction.category)
+  transactions: TransactionEntity[];
+
+  @ManyToOne(() => UserEntity, (user) => user.categories)
   @JoinColumn({ name: 'user_id' })
   user: UserEntity;
 

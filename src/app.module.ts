@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ArticleEntity } from './article/entities/article.entity';
 import { UserEntity } from './user/entities/user.entity';
 import { TransactionEntity } from './transaction/entities/transaction.entity';
+import { CategoryEntity } from './category/entities/category.entity';
 
 @Module({
   imports: [
@@ -24,7 +25,12 @@ import { TransactionEntity } from './transaction/entities/transaction.entity';
         password: configServise.get('DB_PASSWORD'),
         database: configServise.get('DB_NAME') as string,
         synchronize: true,
-        entities: [ArticleEntity, UserEntity, TransactionEntity],
+        entities: [
+          ArticleEntity,
+          UserEntity,
+          TransactionEntity,
+          CategoryEntity,
+        ],
       }),
       inject: [ConfigService],
     }),

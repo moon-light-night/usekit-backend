@@ -8,12 +8,17 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { UserEntity } from '../../user/entities/user.entity';
+import { CategoryEntity } from '../../category/entities/category.entity';
 
 @Entity()
 export class TransactionEntity {
   @ManyToOne(() => UserEntity, (user) => user.transactions)
   @JoinColumn({ name: 'user_id' })
   user: UserEntity;
+
+  @ManyToOne(() => CategoryEntity, (category) => category.transactions)
+  @JoinColumn({ name: 'category_id' })
+  category: CategoryEntity;
 
   @PrimaryColumn({ name: 'transaction_id' })
   id: number;
