@@ -9,11 +9,14 @@ import { ArticleEntity } from './article/entities/article.entity';
 import { UserEntity } from './user/entities/user.entity';
 import { TransactionEntity } from './transaction/entities/transaction.entity';
 import { CategoryEntity } from './category/entities/category.entity';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
     TaskModule,
     ArticleModule,
+    UserModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -34,6 +37,7 @@ import { CategoryEntity } from './category/entities/category.entity';
       }),
       inject: [ConfigService],
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
