@@ -1,11 +1,11 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { IUsersResponse } from './model/user.model';
+import { IUsersResponse } from "./model/user.model";
 import { usersMock } from './mock/user.mock';
 import { CreateUserDto } from './dto/user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { Repository } from 'typeorm';
-import * as argon2 from "argon2";
+import * as argon2 from 'argon2';
 
 @Injectable()
 export class UserService {
@@ -16,6 +16,10 @@ export class UserService {
 
   getUserList(): IUsersResponse {
     return { users: usersMock };
+  }
+
+  async findOne(email: string) {
+    return this.userRepository.findOne({ where: { email } });
   }
 
   async createUser(createUserDto: CreateUserDto) {

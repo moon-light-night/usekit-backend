@@ -17,6 +17,7 @@ import { UserModule } from './user/user.module';
     TaskModule,
     ArticleModule,
     UserModule,
+    AuthModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -37,7 +38,6 @@ import { UserModule } from './user/user.module';
       }),
       inject: [ConfigService],
     }),
-    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -7,6 +7,11 @@ export class User {
   }
 }
 
+export interface IUser {
+  email: string;
+  user_id: string;
+}
+
 export interface IUserResponse {
   user: User;
 }
