@@ -2,12 +2,13 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
-  ManyToOne,
+  // JoinColumn,
+  // ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserEntity } from '../../user/entities/user.entity';
+
+// import { UserEntity } from '../../user/entities/user.entity';
 
 @Entity()
 export class ArticleEntity {
@@ -20,9 +21,9 @@ export class ArticleEntity {
   @Column()
   last_name: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.articles)
-  @JoinColumn({ name: 'user_id' })
-  user: UserEntity;
+  // @ManyToOne(() => UserEntity, (user) => user.articles)
+  // @JoinColumn({ name: 'user_id' })
+  // user: UserEntity;
 
   @CreateDateColumn()
   created_at: Date;

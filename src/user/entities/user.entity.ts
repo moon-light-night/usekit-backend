@@ -6,16 +6,19 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { ArticleEntity } from '../../article/entities/article.entity';
+// import { ArticleEntity } from '../../article/entities/article.entity';
 import { TransactionEntity } from '../../transaction/entities/transaction.entity';
 import { CategoryEntity } from '../../category/entities/category.entity';
 
 @Entity()
 export class UserEntity {
-  @OneToMany(() => ArticleEntity, (article) => article.user, {
-    onDelete: 'CASCADE',
-  })
-  articles: ArticleEntity[];
+  @PrimaryGeneratedColumn({ name: 'user_id' })
+  user_id: number;
+
+  // @OneToMany(() => ArticleEntity, (article) => article.user, {
+  //   onDelete: 'CASCADE',
+  // })
+  // articles: ArticleEntity[];
 
   @OneToMany(() => TransactionEntity, (transaction) => transaction.user)
   transactions: TransactionEntity[];
@@ -24,9 +27,6 @@ export class UserEntity {
     onDelete: 'CASCADE',
   })
   categories: CategoryEntity[];
-
-  @PrimaryGeneratedColumn()
-  user_id: number;
 
   @Column()
   email: string;

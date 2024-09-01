@@ -17,7 +17,7 @@ export class CategoryEntity {
   category_id: number;
 
   @Column()
-  name: string;
+  title: string;
 
   @OneToMany(() => TransactionEntity, (transaction) => transaction.category)
   transactions: TransactionEntity[];
