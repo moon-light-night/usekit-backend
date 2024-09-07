@@ -12,6 +12,7 @@ import { CategoryEntity } from './category/entities/category.entity';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { CategoryModule } from './category/category.module';
+import { TransactionModule } from './transaction/transaction.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { CategoryModule } from './category/category.module';
     UserModule,
     AuthModule,
     CategoryModule,
+    TransactionModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],

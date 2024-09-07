@@ -12,6 +12,10 @@ export interface IUser {
   user_id: string;
 }
 
+export interface IUserRequest {
+  user: IUser;
+}
+
 export interface IUserResponse {
   user: User;
 }

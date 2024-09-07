@@ -4,7 +4,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryColumn,
+  PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { UserEntity } from '../../user/entities/user.entity';
@@ -20,8 +20,8 @@ export class TransactionEntity {
   @JoinColumn({ name: 'category_id' })
   category: CategoryEntity;
 
-  @PrimaryColumn({ name: 'transaction_id' })
-  id: number;
+  @PrimaryGeneratedColumn({ name: 'transaction_id' })
+  transaction_id: number;
 
   @Column()
   title: string;

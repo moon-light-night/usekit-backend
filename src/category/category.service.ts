@@ -19,7 +19,7 @@ export class CategoryService {
 
   async createCategory(createCategoryDto: CreateCategoryDto, user_id: number) {
     const categories: CategoryEntity[] = await this.categoryRepository.findBy({
-      user: { user_id: user_id } as UserEntity,
+      user: { user_id } as UserEntity,
       title: createCategoryDto.title,
     });
     if (categories.length)
