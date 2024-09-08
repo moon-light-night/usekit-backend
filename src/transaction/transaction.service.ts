@@ -8,6 +8,7 @@ import { TransactionEntity } from './entities/transaction.entity';
 import { Repository } from 'typeorm';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { UserEntity } from '../user/entities/user.entity';
+import { TransactionTypes } from './types/transaction.types';
 
 @Injectable()
 export class TransactionService {
@@ -29,16 +30,26 @@ export class TransactionService {
     return await this.transactionRepository.save(newTransaction);
   }
 
-  async findAll(user_id: number) {
-    return await this.transactionRepository.find({
-      where: { user: { user_id } as UserEntity },
+  async findAll(user_id: number, transaction_type?: TransactionTypes) {
+    const transactions = await this.transactionRepository.find({
+      where: { user: { user_id } as UserEntity, type: transaction_type },
       order: {
         created_at: 'DESC',
       },
     });
+    const total_amount = transactions.reduce(
+      (acc, transaction) => acc + transaction.amount,
+      0,
+    );
+
+    return {
+      total_amount,
+      transactions,
+    };
   }
 
   async findOne(transaction_id) {
+    console.log('transaction_id', transaction_id);
     const transaction = await this.transactionRepository.findOne({
       where: { transaction_id },
       relations: ['user', 'category'],

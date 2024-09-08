@@ -23,3 +23,8 @@ export interface IUserResponse {
 export interface IUsersResponse {
   users: User[];
 }
+
+export enum UserGender {
+  MALE = 1,
+  FEMALE = 2,
+}

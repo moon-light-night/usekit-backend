@@ -7,6 +7,7 @@ import {
   MinLength,
 } from 'class-validator';
 import { UserEntity } from '../../user/entities/user.entity';
+import { TransactionTypes } from '../types/transaction.types';
 
 export class CreateTransactionDto {
   @IsNotEmpty()
@@ -18,7 +19,7 @@ export class CreateTransactionDto {
 
   @IsString()
   @MinLength(6)
-  type: 'expense' | 'income';
+  type: TransactionTypes;
 
   @IsNotEmpty()
   category: CategoryEntity;

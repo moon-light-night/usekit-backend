@@ -6,19 +6,14 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-// import { ArticleEntity } from '../../article/entities/article.entity';
 import { TransactionEntity } from '../../transaction/entities/transaction.entity';
 import { CategoryEntity } from '../../category/entities/category.entity';
+import { UserGender } from '../model/user.model';
 
 @Entity()
 export class UserEntity {
   @PrimaryGeneratedColumn({ name: 'user_id' })
   user_id: number;
-
-  // @OneToMany(() => ArticleEntity, (article) => article.user, {
-  //   onDelete: 'CASCADE',
-  // })
-  // articles: ArticleEntity[];
 
   @OneToMany(() => TransactionEntity, (transaction) => transaction.user)
   transactions: TransactionEntity[];
@@ -33,6 +28,9 @@ export class UserEntity {
 
   @Column()
   password: string;
+
+  @Column('enum', { enum: UserGender })
+  gender?: UserGender;
 
   @CreateDateColumn()
   created_at: Date;

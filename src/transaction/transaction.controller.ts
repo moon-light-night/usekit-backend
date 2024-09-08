@@ -16,6 +16,8 @@ import { CreateTransactionDto } from './dto/create-transaction.dto';
 import { TransactionService } from './transaction.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { IUserRequest } from '../user/model/user.model';
+import { AuthorGuard } from '../guard/author.guard';
+import { TransactionTypes } from './types/transaction.types';
 
 @Controller('transaction')
 export class TransactionController {
@@ -50,18 +52,18 @@ export class TransactionController {
 
   @Get('')
   @UseGuards(JwtAuthGuard)
-  findAll(@Req() req: IUserRequest) {
-    return this.transactionService.findAll(+req.user.user_id);
+  findAll(@Req() req: IUserRequest, @Query('type') type?: TransactionTypes) {
+    return this.transactionService.findAll(+req.user.user_id, type);
   }
 
-  @Get(':id')
-  @UseGuards(JwtAuthGuard)
+  @Get(':type/:id')
+  @UseGuards(JwtAuthGuard, AuthorGuard)
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.transactionService.findOne(id);
   }
 
-  @Delete(':id')
-  @UseGuards(JwtAuthGuard)
+  @Delete(':type/:id')
+  @UseGuards(JwtAuthGuard, AuthorGuard)
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.transactionService.remove(id);
   }

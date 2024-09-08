@@ -1,6 +1,0 @@
-import { Article } from '../model/article.model';
-
-export const articlesMock: Article[] = [
-  new Article('The first one', 'Lorem ipsum ....', 1),
-  new Article('The second one', 'Lorem ipsum ....', 2),
-];

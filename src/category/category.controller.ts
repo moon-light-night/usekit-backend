@@ -15,6 +15,7 @@ import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { AuthorGuard } from '../guard/author.guard';
 
 @Controller('category')
 export class CategoryController {
@@ -26,8 +27,8 @@ export class CategoryController {
     return this.categoryService.getCategoryListByUserId(+req.user.user_id);
   }
 
-  @Get(':id')
-  @UseGuards(JwtAuthGuard)
+  @Get(':type/:id')
+  @UseGuards(JwtAuthGuard, AuthorGuard)
   getCategoryByUuid(@Param('id') id: string) {
     return this.categoryService.getCategoryByUuid(+id);
   }
@@ -42,7 +43,7 @@ export class CategoryController {
     );
   }
 
-  @Patch(':id')
+  @Patch(':type/:id')
   @UseGuards(JwtAuthGuard)
   updateCategory(
     @Param('id') id: string,
@@ -51,7 +52,7 @@ export class CategoryController {
     return this.categoryService.updateCategory(+id, updateCategoryDto);
   }
 
-  @Delete(':id')
+  @Delete(':type/:id')
   @UseGuards(JwtAuthGuard)
   deleteCategory(@Param('id') id: string) {
     return this.categoryService.deleteCategory(+id);
